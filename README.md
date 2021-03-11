@@ -24,9 +24,13 @@ $ node src/main [cipher] [method] [file] [key]
 ```
 
 -`src/main` will remain constant when encrypting/decrypting files. The source file that executes the program
+
 -`cipher` - either `ll` (letterLetter) or `ln` (letterNumber) cipher, depending on what you are trying to encrypt/decrypt
+
 -`method` - either `enc` (encrypt) or `dec` (decrypt)
+
 -`file` - the filepath for the .txt file that needs encypting/decrypting
+
 -`key` - Optional. Used for letterNumber ciphers
 
 - This will create a new file for with the encrypted/decrypted output and store it in the `output_files` directory
