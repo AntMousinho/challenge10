@@ -5,7 +5,7 @@ class LetterNumber {
     constructor(characterSet) {
         this._cipher = readCipher(characterSet);
     }
-
+    
     encrypt(string, offset) {
         return string.split('').map(char => {
             let number = (parseInt(this._cipher[char]) + offset) % 99
