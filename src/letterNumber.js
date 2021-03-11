@@ -1,15 +1,20 @@
 const invertCipher = require('./invertCipher');
+const readCipher = require('./readCipher');
 
 class LetterNumber {
-    encrypt(string, cipher, offset) {
+    constructor(characterSet) {
+        this._cipher = readCipher(characterSet);
+    }
+
+    encrypt(string, offset) {
         return string.split('').map(char => {
-            let number = (parseInt(cipher[char]) + offset) % 99
+            let number = (parseInt(this._cipher[char]) + offset) % 99
             return number.toString().padStart(2, '0')
         }).join('');
     }
 
-    decrypt(string, cipher, offset) {
-        let invertedCipher = invertCipher(cipher);
+    decrypt(string, offset) {
+        let invertedCipher = invertCipher(this._cipher);
         return this.chunk(string.split(''), 2).map(pair => {
             let cipherPair = parseInt(pair.join(''));
             let number = (99 + (cipherPair - offset)) % 99;
