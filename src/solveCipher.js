@@ -5,7 +5,7 @@ const LetterLetter = require('./letterLetter');
 
 const solveCipher = (cipherFile, method, file, key = null) => {
     let cipher = readCipher(cipherFile);
-    let fileString = fs.readFileSync(file).toString();
+    let fileString = fs.readFileSync(file, 'utf8');
     let output = ''
     
     if(key !== null) output = method(fileString, cipher, key);
@@ -27,8 +27,8 @@ module.exports = solveCipher;
 
 // Test
 // let ln = new LetterNumber();
-// let ll = new LetterLetter();
+let ll = new LetterLetter();
 
 // solveCipher('character_set.txt', ln.encrypt, '../text_files/testfile.txt', 31045)
 
-// solveCipher('character_set2.txt', ll.decrypt, '../text_files/testfile2.txt.enc');
+solveCipher('character_set2.txt', ll.decrypt, '../text_files/testfile2.txt.enc');
