@@ -13,7 +13,7 @@ class LetterLetter {
     }
 
     decrypt(string) {
-        let swappedCipher = invertCipher(this._cipher);
+        let swappedCipher = invertCipher(this._cipher);       
         return string.split('').map(char => {
             return swappedCipher[char];
         }).join('');

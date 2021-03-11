@@ -11,19 +11,22 @@ const solveCipher = (cipherFile, method, file, key = null) => {
     
     let outputFileName = sliceFileName(file);
 
-    fs.writeFile(`${outputFileName}`, output, (err) => {
+    fs.writeFile(`output_files/${outputFileName}`, output, (err) => {
         if(err) throw err;
     });
 }
 
 
+
 const sliceFileName = file => {
-    let newFileName = ''
+    let tempFileName = ''
     if(file.slice(file.length - 4) === '.txt') {
-        newFileName = `${file}.enc`;
+        tempFileName = `${file}.enc`;
     } else {
-        newFileName = file.slice(0, file.length - 4);
+        tempFileName = file.slice(0, file.length - 4);
     }
+    let fileArray = tempFileName.split('/');
+    let newFileName = fileArray[fileArray.length - 1];
     return newFileName;
 }
 

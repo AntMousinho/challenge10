@@ -7,8 +7,8 @@ class LetterNumber {
     }
     
     encrypt(string, offset) {
-        return string.split('').map(char => {
-            let number = (parseInt(this._cipher[char]) + offset) % 99
+        return string.split('').map(char => {    
+            let number = (parseInt(this._cipher[char]) + offset) % 99            
             return number.toString().padStart(2, '0')
         }).join('');
     }
@@ -17,8 +17,11 @@ class LetterNumber {
         let invertedCipher = invertCipher(this._cipher);
         return this.chunk(string.split(''), 2).map(pair => {
             let cipherPair = parseInt(pair.join(''));
-            let number = (99 + (cipherPair - offset)) % 99;
-            return invertedCipher[number.toString()]
+            while(cipherPair < offset) {
+                cipherPair += 99;
+            }
+            cipherPair -= offset;
+            return invertedCipher[cipherPair.toString()]
         }).join('');
     }
 
